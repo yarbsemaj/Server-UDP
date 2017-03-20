@@ -4,6 +4,7 @@
 
 Aircraft::Aircraft()
 {
+	//set up the aircraft
 	presure = Sensor();
 	longitude = Sensor();
 	latitude = Sensor();
@@ -18,6 +19,7 @@ Aircraft::~Aircraft()
 
 void Aircraft::update(char registration [7] , float presure, float longitude, float latitude, float speed, float altitude)
 {
+	//sets its atributes
 	memcpy(this->registration,registration, 7);
 	this->presure.setValue(presure);
 	this->longitude.setValue(longitude);
@@ -28,6 +30,7 @@ void Aircraft::update(char registration [7] , float presure, float longitude, fl
 	this->notiState = 0;
 }
 void Aircraft::incrementNotiStat() {
+	//increment its notification state
 	this->notiState++;
 }
 

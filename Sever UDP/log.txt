@@ -1,1 +1,1 @@
-Reg: JamesBLongitude: -3159Latitude: 5267Altitude: 9000Presure: -5Time: Tue Mar 14 21:46:29 2017
+Reg: balrLongitude: -4559Latitude: 3867Altitude: 2000Presure: 0Time: Mon Mar 20 21:43:14 2017

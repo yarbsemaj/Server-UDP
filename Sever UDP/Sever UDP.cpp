@@ -8,8 +8,9 @@
 
 int main()
 {
+	//creates the vector of aircraft
 	std::vector<Aircraft> aircraft;
-	NetworkServer server = NetworkServer();
+	//start the server and checker thread
 	std::thread serverThred(&NetworkServer::start, std::ref(aircraft));
 	std::thread checker(&Alert::start, std::ref(aircraft));
 

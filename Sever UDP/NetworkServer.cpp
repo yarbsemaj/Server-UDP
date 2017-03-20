@@ -20,17 +20,18 @@ NetworkServer::NetworkServer()
 }
 
 void NetworkServer::start(std::vector<Aircraft> &aircrafts) {
+	//creat the list of observers
 	std::vector<Observer*> observers;
 	observers.push_back(new FileWriter());
 	observers.push_back(new UI());
 
+	//creat the required server atributes
 	Packet packet;
 	SOCKET s;
 	struct sockaddr_in server, si_other;
 	int slen, recv_len;
 	char buf[BUFLEN];
 	WSADATA wsa;
-
 
 	slen = sizeof(si_other);
 
@@ -63,20 +64,20 @@ void NetworkServer::start(std::vector<Aircraft> &aircrafts) {
 	}
 	puts("Bind done");
 
-	//keep listening for data
+	//listen for data
 	while (1)
 	{
+		//flush the buffer
 		fflush(stdout);
 
 		memset(buf, '\0', BUFLEN);
+		//revive the data
 		recv_len = recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *) &si_other, &slen);
-
+		//decerialise the packet
 		packet.deserialize(buf);
 		bool newAircraft = true;
-		
-		for (std::vector<Observer*>::iterator it = observers.begin(); it != observers.end(); ++it)
-			(*it)->update(aircrafts);
 
+		//update the aircraft if it already excsits
 		for (int y = 0; y < aircrafts.size(); y++)
 		{
 			if (std::strcmp(aircrafts[y].registration, packet.regNum)==0) {
@@ -84,14 +85,19 @@ void NetworkServer::start(std::vector<Aircraft> &aircrafts) {
 				aircrafts[y].update(packet.regNum, packet.presure, packet.longitude, packet.latitude, packet.speed, packet.altitude);
 			}
 		}
+		//if not create a new one
 		if (newAircraft) {
 			Aircraft arircraft = Aircraft();
 			arircraft.update(packet.regNum, packet.presure, packet.longitude, packet.latitude, packet.speed, packet.altitude);
 			aircrafts.push_back(arircraft);
-		}		
+		}	
+
+		//update the onservers
+		for (std::vector<Observer*>::iterator it = observers.begin(); it != observers.end(); ++it)
+			(*it)->update(aircrafts);
 
 	}
-
+	//close the server
 	closesocket(s);
 	WSACleanup();
 
