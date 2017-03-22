@@ -30,11 +30,11 @@ void Alert::start(vector<Aircraft>& aircrafts)
 			switch (aircrafts[y].notiState) {
 			case 0:
 				//if there has been nod data
-				if (aircrafts[y].timeComp() > 4) {
+				if (aircrafts[y].timeComp() > 10) {
 					//incrament the alert lever
 					aircrafts[y].incrementNotiStat();
 					//display the alert
-					popup(aircrafts[y].registration, "4", MB_ICONASTERISK);
+					popup(aircrafts[y].registration, "10", MB_ICONASTERISK);
 				}
 				break;
 

@@ -6,6 +6,7 @@
 #include "Observer.h"
 #include "FileWriter.h";
 #include "UI.h"
+#include "WebPoster.h"
 
 #pragma comment(lib,"ws2_32.lib") //Winsock Library
 
@@ -24,6 +25,7 @@ void NetworkServer::start(std::vector<Aircraft> &aircrafts) {
 	std::vector<Observer*> observers;
 	observers.push_back(new FileWriter());
 	observers.push_back(new UI());
+	//observers.push_back(new WebPoster());
 
 	//creat the required server atributes
 	Packet packet;

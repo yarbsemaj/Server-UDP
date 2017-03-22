@@ -71,6 +71,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\Documents\Documents\build-libcurl-windows-master\build-libcurl-windows-master\third-party\libcurl\include;D:\Documents\Documents\cpr-master\cpr-master\include;$(IncludePath)</IncludePath>
+    <SourcePath>D:\Documents\Documents\cpr-master\cpr-master\cpr;$(SourcePath)</SourcePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -87,11 +90,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;CRUL_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Documents\Documents\build-libcurl-windows-master\build-libcurl-windows-master\third-party\libcurl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,11 +155,11 @@
     <ClInclude Include="NetworkData.h" />
     <ClInclude Include="NetworkServer.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="WebPoster.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Aircraft.cpp" />
@@ -167,6 +171,7 @@
     <ClCompile Include="Sever UDP.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="WebPoster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sever UDP.rc" />
